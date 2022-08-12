@@ -94,6 +94,7 @@ export default function Signup() {
                 userCredential.user.sendEmailVerification();
                 setVerifiedEmailSent(true);
             }).catch(alert);
+        alert("Please check your spam folder if you don't receive the email\nPlease check your spam folder if you don't receive the email\nPlease check your spam folder if you don't receive the email");
     }
 
     const verifyEmail = async () => {
@@ -153,12 +154,22 @@ export default function Signup() {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
-                            {verifiedEmailSent && <Typography
-                                variant='body1'
-                                component='div'
-                                gutterBottom>
-                                An email has been sent to {email} to verify your account. Please verify your email to continue. It might be in your <strong>spam folder</strong>.
-                            </Typography>}
+                            {verifiedEmailSent &&
+                                <>
+                                    <Typography
+                                        variant='body1'
+                                        component='div'
+                                        gutterBottom>
+                                        An email has been sent to {email} to verify your account. Please verify your email to continue.
+                                    </Typography>
+                                    <Typography
+                                        variant='body1'
+                                        component='div'
+                                        color="error"
+                                        gutterBottom>
+                                        <strong>It might be in your spam folder.</strong>
+                                    </Typography>
+                                </>}
                             {/* Password Input */}
                             <TextField
                                 error={!validPassword}
